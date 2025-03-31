@@ -1,61 +1,208 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: #808080; /* Matching Login & Register Background */
+    color: white;
     margin: 0;
     padding: 0;
-}
-
-.dashboard-container {
-    width: 60%;
-    margin: 50px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #007bff;
-}
-
-h3 {
-    color: #333;
-}
-
-.app-links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    align-items: center;
 }
 
-.app-card {
-    display: block;
-    padding: 15px;
-    font-size: 18px;
-    text-decoration: none;
+/* Navbar */
+.navbar {
+    background: rgba(0, 0, 0, 0.9); /* Dark Transparent Navbar */
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar a {
     color: white;
-    background-color: #007bff;
-    border-radius: 5px;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
     transition: 0.3s;
 }
 
-.app-card:hover {
-    background-color: #0056b3;
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
 }
 
-.logout-button {
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.hero-content {
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    color: #ddd;
+    margin-bottom: 30px;
+}
+
+.hero-buttons a {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 20px;
-    background-color: #dc3545;
+    padding: 15px 30px;
+    margin-right: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.apply-now-button {
+    background: #4a90e2;
+    color: white;
+}
+
+.apply-now-button:hover {
+    background: #357abd;
+}
+
+.read-more-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.read-more-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.social-icons {
+    margin-top: 30px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.social-icons img:hover {
+    opacity: 1;
+}
+
+.hero-image img {
+    max-width: 400px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1000px;
+    margin: 50px auto; /* Proper spacing from navbar */
+    background: rgba(0, 0, 0, 0.85); /* Matching dark UI */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 80%;
+}
+
+.dashboard-container h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.dashboard-container h3 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+/* Feature Cards */
+.feature-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.feature-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 320px;
+    background: white;
+    color: black;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out;
+}
+
+.feature-card h3 {
+    margin: 12px 0;
+    font-size: 20px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.feature-card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #28a745;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    transition: 0.3s;
+}
+
+.feature-card a:hover {
+    background: #218838;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Logout Button */
+.logout-button {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 16px;
 }
 
 .logout-button:hover {
-    background-color: #c82333;
+    background: #c0392b;
 }
