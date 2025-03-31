@@ -5,7 +5,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    // Check session and get the user email
     HttpSession sessionUser = request.getSession(false);
     if (sessionUser == null || sessionUser.getAttribute("email") == null) {
         response.sendRedirect("login.jsp");
@@ -13,8 +12,6 @@
     }
 
     String userEmail = (String) sessionUser.getAttribute("email");
-
-    // ✅ FIX: Retrieve notes list properly
     List<Note> notes = NoteDAO.getNotes(userEmail);
 %>
 
@@ -26,10 +23,12 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
         .container { max-width: 600px; margin: auto; }
-        .note { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
-        form { margin-bottom: 20px; }
+        .note { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; padding: 10px; }
+        form { margin-bottom: 20px; display: inline; }
         input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
-        button { background: blue; color: white; padding: 8px; border: none; }
+        button { background: blue; color: white; padding: 8px; border: none; cursor: pointer; }
+        .edit-btn { background: orange; }
+        .delete-btn { background: red; }
     </style>
 </head>
 <body>
@@ -45,20 +44,31 @@
 
         <h3>Your Notes:</h3>
         
-        <!-- ✅ FIX: Ensure notes list is not null -->
-        <% if (notes != null && !notes.isEmpty()) { %>
-            <% for (Note note : notes) { %>
-                <div class="note">
-                    <h4><%= note.getTitle() %></h4>
-                    <p><%= note.getContent() %></p>
-                    <form action="DeleteNoteServlet" method="post" style="display:inline;">
-                        <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
-            <% } %>
-        <% } else { %>
-            <p>No notes available. Add some notes!</p>
+        <% for (Note note : notes) { %>
+            <div class="note">
+                <h4><%= note.getTitle() %></h4>
+                <p><%= note.getContent() %></p>
+                
+                <!-- View Note -->
+                <form action="ViewNoteServlet" method="get">
+                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                    <button type="submit">View</button>
+                </form>
+
+                <!-- Edit Note -->
+                <form action="edit_note.jsp" method="get">
+                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                    <input type="hidden" name="title" value="<%= note.getTitle() %>">
+                    <input type="hidden" name="content" value="<%= note.getContent() %>">
+                    <button type="submit" class="edit-btn">Edit</button>
+                </form>
+
+                <!-- Delete Note -->
+                <form action="DeleteNoteServlet" method="post">
+                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+            </div>
         <% } %>
     </div>
 </body>

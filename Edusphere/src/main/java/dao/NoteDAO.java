@@ -30,7 +30,13 @@ public class NoteDAO {
             stmt.setString(1, userEmail);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Note note = new Note(rs.getInt("id"), rs.getString("user_email"), rs.getString("title"), rs.getString("content"), rs.getTimestamp("created_at"));
+                Note note = new Note(
+                    rs.getInt("id"), 
+                    rs.getString("user_email"), 
+                    rs.getString("title"), 
+                    rs.getString("content"), 
+                    rs.getTimestamp("created_at")
+                );
                 notes.add(note);
             }
         } catch (SQLException e) {
@@ -44,6 +50,41 @@ public class NoteDAO {
             String sql = "DELETE FROM notes WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, noteId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static Note getNoteById(int noteId) {
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM notes WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, noteId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Note(
+                    rs.getInt("id"), 
+                    rs.getString("user_email"), 
+                    rs.getString("title"), 
+                    rs.getString("content"), 
+                    rs.getTimestamp("created_at")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean updateNote(int noteId, String title, String content) {
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "UPDATE notes SET title = ?, content = ? WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, title);
+            stmt.setString(2, content);
+            stmt.setInt(3, noteId);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

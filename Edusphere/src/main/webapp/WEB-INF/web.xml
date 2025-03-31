@@ -1,4 +1,6 @@
 <web-app xmlns="http://jakarta.ee/xml/ns/jakartaee" version="5.0">
+
+    <!-- Register Servlet -->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>servlet.RegisterServlet</servlet-class>
@@ -8,6 +10,7 @@
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Login Servlet -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
@@ -17,6 +20,7 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Logout Servlet -->
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>servlet.LogoutServlet</servlet-class>
@@ -26,7 +30,17 @@
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Servlets for Enote Functionality -->
+    <!-- ✅ ViewNoteServlet (Added) -->
+    <servlet>
+        <servlet-name>ViewNoteServlet</servlet-name>
+        <servlet-class>servlet.ViewNoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewNoteServlet</servlet-name>
+        <url-pattern>/ViewNoteServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Add Note Servlet -->
     <servlet>
         <servlet-name>AddNoteServlet</servlet-name>
         <servlet-class>servlet.AddNoteServlet</servlet-class>
@@ -36,6 +50,7 @@
         <url-pattern>/AddNoteServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Edit Note Servlet -->
     <servlet>
         <servlet-name>EditNoteServlet</servlet-name>
         <servlet-class>servlet.EditNoteServlet</servlet-class>
@@ -45,6 +60,7 @@
         <url-pattern>/EditNoteServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Delete Note Servlet -->
     <servlet>
         <servlet-name>DeleteNoteServlet</servlet-name>
         <servlet-class>servlet.DeleteNoteServlet</servlet-class>
@@ -54,8 +70,9 @@
         <url-pattern>/DeleteNoteServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Welcome page -->
+    <!-- Welcome Page -->
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>
