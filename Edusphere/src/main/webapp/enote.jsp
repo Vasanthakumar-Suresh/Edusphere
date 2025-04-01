@@ -20,22 +20,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Enote - Manage Your Notes</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        .note { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; padding: 10px; }
-        form { margin-bottom: 20px; display: inline; }
-        input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
-        button { background: blue; color: white; padding: 8px; border: none; cursor: pointer; }
-        .edit-btn { background: orange; }
-        .delete-btn { background: red; }
-    </style>
+    <link rel="stylesheet" href="enotestyles.css"> 
 </head>
-<body>
+<body >
+    <div class="navbar">
+        <a href="dashboard.jsp">🏠 Home</a>
+        <a href="enote.jsp">📓 Enote</a>
+        <a href="edutask.jsp">✅ Edutask</a>
+        <a href="eduxplore.jsp">📂 Eduxplore</a>
+        <a href="https://ksm05.github.io/eduscribe/">📂 Eduscribe</a>
+        <a href="LogoutServlet" class="logout-button">🚪 Logout</a>
+    </div>
     <div class="container">
         <h2>Welcome to Enote</h2>
 
-        <!-- ✅ Add Note Form -->
         <form action="AddNoteServlet" method="post">
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="content" placeholder="Enter your note here..." required></textarea>
@@ -46,28 +44,28 @@
         
         <% for (Note note : notes) { %>
             <div class="note">
-                <h4><%= note.getTitle() %></h4>
-                <p><%= note.getContent() %></p>
-                
-                <!-- View Note -->
-                <form action="ViewNoteServlet" method="get">
-                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                    <button type="submit">View</button>
-                </form>
+                <div>
+                    <h4><%= note.getTitle() %></h4>
+                    <p><%= note.getContent() %></p>
+                </div>
+                <div class="note-actions">
+                    <form action="ViewNoteServlet" method="get">
+                        <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                        <button type="submit">View</button>
+                    </form>
 
-                <!-- Edit Note -->
-                <form action="edit_note.jsp" method="get">
-                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                    <input type="hidden" name="title" value="<%= note.getTitle() %>">
-                    <input type="hidden" name="content" value="<%= note.getContent() %>">
-                    <button type="submit" class="edit-btn">Edit</button>
-                </form>
+                    <form action="edit_note.jsp" method="get">
+                        <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                        <input type="hidden" name="title" value="<%= note.getTitle() %>">
+                        <input type="hidden" name="content" value="<%= note.getContent() %>">
+                        <button type="submit" class="edit-btn">Edit</button>
+                    </form>
 
-                <!-- Delete Note -->
-                <form action="DeleteNoteServlet" method="post">
-                    <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
+                    <form action="DeleteNoteServlet" method="post">
+                        <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                </div>
             </div>
         <% } %>
     </div>
