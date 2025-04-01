@@ -18,6 +18,7 @@
         <a href="enote.jsp">📓 Enote</a>
         <a href="edutask.jsp">✅ Edutask</a>
         <a href="eduxplore.jsp">📂 Eduxplore</a>
+        <a href="https://ksm05.github.io/eduscribe/">📂 Eduscribe</a>
         <a href="LogoutServlet" class="logout-button">🚪 Logout</a>
     </div>
 
